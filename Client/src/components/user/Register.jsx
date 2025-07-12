@@ -42,7 +42,7 @@ const Register = () => {
         <h1 className="text-center">User Register</h1>
         <form onSubmit={submitHandler} className="my-3">
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
+            <label htmlFor="registerName" className="form-label">
               Name
             </label>
             <input
@@ -51,12 +51,12 @@ const Register = () => {
               onChange={onChangerHandler}
               type="text"
               className="form-control"
-              id="exampleInputEmail13"
+              id="registerName"
               aria-describedby="emailHelp"
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
+            <label htmlFor="registerEmail" className="form-label">
               Email
             </label>
             <input
@@ -65,12 +65,12 @@ const Register = () => {
               onChange={onChangerHandler}
               type="email"
               className="form-control"
-              id="exampleInputEmail1"
+              id="registerEmail"
               aria-describedby="emailHelp"
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
+            <label htmlFor="registerPassword" className="form-label">
               Password
             </label>
             <input
@@ -79,7 +79,7 @@ const Register = () => {
               onChange={onChangerHandler}
               type="password"
               className="form-control"
-              id="exampleInputPassword1"
+              id="registerPassword"
             />
           </div>
           <div className="d-grid col-6 mx-auto my-3">

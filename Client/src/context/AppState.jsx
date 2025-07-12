@@ -28,7 +28,7 @@ const AppState = (props) => {
         },
         withCredentials: true,
       });
-      console.log(api.data.products);
+      // console.log(api.data.products);
       setProducts(api.data.products);
       setFilteredData(api.data.products);
       userProfile();
@@ -144,7 +144,7 @@ const AppState = (props) => {
 
   // add To Cart
   const addToCart = async (productId, title, price, qty, imgSrc) => {
-    console.log("product id = ", productId);
+    // console.log("product id = ", productId);
     const api = await axios.post(
       `${url}/cart/add`,
       { productId, title, price, qty, imgSrc },
@@ -332,7 +332,6 @@ const AppState = (props) => {
     setUserOrder(api.data)
     
   };
-console.log("user order = ", userOrder);
 
   return (
     <AppContext.Provider

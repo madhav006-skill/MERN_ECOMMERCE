@@ -25,6 +25,12 @@ const Checkout = () => {
 
   const handlePayment = async () => {
     try {
+      // Validate required data before proceeding
+      if (!userAddress || !user || !cart?.items || cart.items.length === 0) {
+        console.error("Missing required data for payment");
+        return;
+      }
+
       const orderRepons = await axios.post(`${url}/payment/checkout`, {
         amount: price,
         qty: qty,
@@ -33,7 +39,13 @@ const Checkout = () => {
         userId: user._id,
       });
 
-      console.log(" order response ", orderRepons);
+      // console.log(" order response ", orderRepons);
+      
+      if (!orderRepons.data.orderId) {
+        console.error("No order ID received from server");
+        return;
+      }
+
       const { orderId, amount: orderAmount } = orderRepons.data;
 
       var options = {
@@ -44,45 +56,60 @@ const Checkout = () => {
         description: "Web Dev Mastery",
         order_id: orderId,
         handler: async function (response) {
-          const paymentData = {
-            orderId: response.razorpay_order_id,
-            paymentId: response.razorpay_payment_id,
-            signature: response.razorpay_signature,
-            amount: orderAmount,
-            orderItems: cart?.items,
-            userId: user._id,
-            userShipping: userAddress,
-          };
+          try {
+            const paymentData = {
+              orderId: response.razorpay_order_id,
+              paymentId: response.razorpay_payment_id,
+              signature: response.razorpay_signature,
+              amount: orderAmount,
+              orderItems: cart?.items,
+              userId: user._id,
+              userShipping: userAddress,
+            };
 
-          const api = await axios.post(
-            `${url}/payment/verify-payment`,
-            paymentData
-          );
+            const api = await axios.post(
+              `${url}/payment/verify-payment`,
+              paymentData
+            );
 
-          console.log("razorpay res ", api.data);
+            // console.log("razorpay res ", api.data);
 
-          if (api.data.success) {
-            clearCart();
-            navigate("/oderconfirmation");
+            if (api.data.success) {
+              clearCart();
+              navigate("/oderconfirmation");
+            }
+          } catch (error) {
+            console.error("Payment verification error:", error);
           }
         },
         prefill: {
-          name: "Web Dev Mastery",
-          email: "webdevmastery@gmail.com",
-          contact: "9000090000",
+          name: userAddress?.fullName || "Web Dev Mastery",
+          email: user?.email || "webdevmastery@gmail.com",
+          contact: userAddress?.phoneNumber || "9000090000",
         },
         notes: {
-          address: "Vijay Nagar Indore",
+          address: userAddress?.address || "Vijay Nagar Indore",
         },
         theme: {
           color: "#3399cc",
         },
+        modal: {
+          ondismiss: function() {
+            // console.log("Payment modal dismissed");
+          }
+        }
       };
 
       const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', function (response) {
+        console.error("Payment failed:", response.error);
+      });
       rzp.open();
     } catch (error) {
-      console.log("Payment error: ", error);
+      console.error("Payment error: ", error);
+      if (error.response) {
+        console.error("Server error:", error.response.data);
+      }
     }
   };
 

@@ -35,7 +35,7 @@ const Address = () => {
       phoneNumber
     );
 
-    console.log("address adedd ",result)
+    // console.log("address adedd ",result)
 
     if (result.success) {
       navigate("/checkout");
@@ -66,7 +66,7 @@ const Address = () => {
         <form onSubmit={submitHandler} className="my-3">
           <div className="row">
             <div className="mb-3 col-md-4 ">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label htmlFor="fullName" className="form-label">
                 Full Name
               </label>
               <input
@@ -75,12 +75,12 @@ const Address = () => {
                 onChange={onChangerHandler}
                 type="text"
                 className="form-control bg-dark text-light"
-                id="exampleInputEmail13"
+                id="fullName"
                 aria-describedby="emailHelp"
               />
             </div>
             <div className="mb-3 col-md-4">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label htmlFor="country" className="form-label">
                 Country
               </label>
               <input
@@ -89,12 +89,12 @@ const Address = () => {
                 onChange={onChangerHandler}
                 type="text"
                 className="form-control bg-dark text-light"
-                id="exampleInputEmail1"
+                id="country"
                 aria-describedby="emailHelp"
               />
             </div>
             <div className="mb-3 col-md-4">
-              <label htmlFor="exampleInputPassword1" className="form-label">
+              <label htmlFor="state" className="form-label">
                 State
               </label>
               <input
@@ -103,14 +103,14 @@ const Address = () => {
                 onChange={onChangerHandler}
                 type="text"
                 className="form-control bg-dark text-light"
-                id="exampleInputPassword1"
+                id="state"
               />
             </div>
           </div>
 
           <div className="row">
             <div className="mb-3 col-md-4 ">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label htmlFor="city" className="form-label">
                 City
               </label>
               <input
@@ -119,12 +119,12 @@ const Address = () => {
                 onChange={onChangerHandler}
                 type="text"
                 className="form-control bg-dark text-light"
-                id="exampleInputEmail13"
+                id="city"
                 aria-describedby="emailHelp"
               />
             </div>
             <div className="mb-3 col-md-4">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label htmlFor="pincode" className="form-label">
                 Pincode
               </label>
               <input
@@ -133,12 +133,12 @@ const Address = () => {
                 onChange={onChangerHandler}
                 type="number"
                 className="form-control bg-dark text-light"
-                id="exampleInputEmail1"
+                id="pincode"
                 aria-describedby="emailHelp"
               />
             </div>
             <div className="mb-3 col-md-4">
-              <label htmlFor="exampleInputPassword1" className="form-label">
+              <label htmlFor="phoneNumber" className="form-label">
                 PhoneNumber
               </label>
               <input
@@ -147,14 +147,14 @@ const Address = () => {
                 onChange={onChangerHandler}
                 type="number"
                 className="form-control bg-dark text-light"
-                id="exampleInputPassword1"
+                id="phoneNumber"
               />
             </div>
           </div>
 
           <div className="row">
             <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
+              <label htmlFor="address" className="form-label">
                 Address/Nearby
               </label>
               <textarea
@@ -163,7 +163,7 @@ const Address = () => {
                 onChange={onChangerHandler}
                 type="text"
                 className="form-control bg-dark text-light"
-                id="exampleInputPassword1"
+                id="address"
               />
             </div>
           </div>

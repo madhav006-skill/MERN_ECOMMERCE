@@ -42,7 +42,7 @@ const Login = () => {
         <form onSubmit={submitHandler} className="my-3">
           
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
+            <label htmlFor="loginEmail" className="form-label">
               Email
             </label>
             <input
@@ -51,12 +51,12 @@ const Login = () => {
               onChange={onChangerHandler}
               type="email"
               className="form-control"
-              id="exampleInputEmail1"
+              id="loginEmail"
               aria-describedby="emailHelp"
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
+            <label htmlFor="loginPassword" className="form-label">
               Password
             </label>
             <input
@@ -65,7 +65,7 @@ const Login = () => {
               onChange={onChangerHandler}
               type="password"
               className="form-control"
-              id="exampleInputPassword1"
+              id="loginPassword"
             />
           </div>
           <div className="d-grid col-6 mx-auto my-3">
